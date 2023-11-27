@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:pm2_pf_grupo_4/src/pages/Login/verification/login_code_controller.dart';
+import 'package:pm2_pf_grupo_4/src/pages/Login/verification/login_send_controller.dart';
 
-class LoginCodePage extends StatelessWidget {
+class LoginSendPage extends StatelessWidget {
 
-  LoginCodeController controller = Get.put(LoginCodeController());
+  LoginSendController controller = Get.put(LoginSendController());
 
   @override
   Widget build(BuildContext context) {
@@ -40,7 +40,7 @@ class LoginCodePage extends StatelessWidget {
     return Container(
       width: double.infinity,
       height: MediaQuery.of(context).size.height * 0.5,
-      color: Colors.orange,
+      color: Colors.amberAccent,
     );
   }
 
@@ -74,10 +74,10 @@ class LoginCodePage extends StatelessWidget {
     return Container(
       margin: EdgeInsets.symmetric(horizontal: 40),
       child: TextField(
-        controller: controller.codeController,
+        controller: controller.sendCodeController,
         decoration: const InputDecoration(
-            hintText: 'CODIGO',
-            prefixIcon: Icon(Icons.code)
+            hintText: 'Correo Electronico',
+            prefixIcon: Icon(Icons.email)
         ),
       ),
     );
@@ -88,12 +88,12 @@ class LoginCodePage extends StatelessWidget {
       width: double.infinity,
       margin: EdgeInsets.symmetric(horizontal: 40, vertical: 30),
       child: ElevatedButton(
-          onPressed: () => controller.validateCode(),
+          onPressed: () => controller.updateCodeForgot(),
           style: ElevatedButton.styleFrom(
               padding: EdgeInsets.symmetric(vertical: 15)
           ),
           child: Text(
-            'Verficar',
+            'Enviar Codigo',
             style: TextStyle(
                 color: Colors.black
             ),
@@ -107,7 +107,7 @@ class LoginCodePage extends StatelessWidget {
     return Container(
       margin: EdgeInsets.only(top: 40, bottom: 30),
       child: const Text(
-        'VERFIFICAR CODIGO',
+        'ENVIAR CODIGO DE RECUPERACION',
         style: TextStyle(
           color: Colors.black,
         ),

@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:pm2_pf_grupo_4/src/pages/Login/verification/login_code_controller.dart';
+import 'package:pm2_pf_grupo_4/src/pages/Login/change_password/login_change_controller.dart';
 
-class LoginCodePage extends StatelessWidget {
+class LoginChangePassword extends StatelessWidget {
 
-  LoginCodeController controller = Get.put(LoginCodeController());
+  LoginChangeController controller = Get.put(LoginChangeController());
 
   @override
   Widget build(BuildContext context) {
@@ -40,13 +40,13 @@ class LoginCodePage extends StatelessWidget {
     return Container(
       width: double.infinity,
       height: MediaQuery.of(context).size.height * 0.5,
-      color: Colors.orange,
+      color: Colors.red,
     );
   }
 
   Widget _boxForm(BuildContext context) {
     return Container(
-      height: MediaQuery.of(context).size.height * 0.35,
+      height: MediaQuery.of(context).size.height * 0.45,
       margin: EdgeInsets.only(top: MediaQuery.of(context).size.height * 0.3, left: 50, right: 50),
       decoration: const BoxDecoration(
           color: Colors.white,
@@ -62,7 +62,9 @@ class LoginCodePage extends StatelessWidget {
         child: Column(
           children: [
             _textYourInfo(),
-            _textFieldCode(),
+            _textFieldEmail(),
+            _textFieldPassword(),
+            _textFieldConfirmPassword(),
             _buttonRegister(context)
           ],
         ),
@@ -70,30 +72,59 @@ class LoginCodePage extends StatelessWidget {
     );
   }
 
-  Widget _textFieldCode() {
+  Widget _textFieldEmail() {
     return Container(
       margin: EdgeInsets.symmetric(horizontal: 40),
       child: TextField(
-        controller: controller.codeController,
+        controller: controller.emailController,
         decoration: const InputDecoration(
-            hintText: 'CODIGO',
-            prefixIcon: Icon(Icons.code)
+            hintText: 'Correo Electronico',
+            prefixIcon: Icon(Icons.email)
         ),
       ),
     );
   }
 
+  Widget _textFieldPassword() {
+    return Container(
+      margin: EdgeInsets.symmetric(horizontal: 40, vertical: 1),
+      child:  TextField(
+        controller: controller.passwordController,
+        keyboardType: TextInputType.text,
+        obscureText: true,
+        decoration: InputDecoration(
+            hintText: 'Contraseña',
+            prefixIcon: Icon(Icons.lock)
+        ),
+      ),
+    );
+  }
+
+  Widget _textFieldConfirmPassword() {
+    return Container(
+      margin: EdgeInsets.symmetric(horizontal: 40, vertical: 1),
+      child:  TextField(
+        controller: controller.confirmPasswordController,
+        keyboardType: TextInputType.text,
+        obscureText: true,
+        decoration: InputDecoration(
+            hintText: 'Confirmar Contraseña',
+            prefixIcon: Icon(Icons.lock_outline)
+        ),
+      ),
+    );
+  }
   Widget _buttonRegister(BuildContext context) {
     return Container(
       width: double.infinity,
       margin: EdgeInsets.symmetric(horizontal: 40, vertical: 30),
       child: ElevatedButton(
-          onPressed: () => controller.validateCode(),
+          onPressed: () => controller.changePassword(),
           style: ElevatedButton.styleFrom(
               padding: EdgeInsets.symmetric(vertical: 15)
           ),
           child: Text(
-            'Verficar',
+            'Cambiar',
             style: TextStyle(
                 color: Colors.black
             ),
@@ -107,7 +138,7 @@ class LoginCodePage extends StatelessWidget {
     return Container(
       margin: EdgeInsets.only(top: 40, bottom: 30),
       child: const Text(
-        'VERFIFICAR CODIGO',
+        'RESTABLECE TU CONTRASEÑA',
         style: TextStyle(
           color: Colors.black,
         ),

@@ -19,6 +19,10 @@ class LoginController extends GetxController {
     Get.toNamed("/register");
   }
 
+  void goToRecoverPassword() {
+    Get.toNamed("/login/recover");
+  }
+
   void login(context) async {
     String email = emailController.text.trim();
     String password = passwordController.text.trim();

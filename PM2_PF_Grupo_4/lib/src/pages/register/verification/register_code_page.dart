@@ -107,7 +107,7 @@ class RegisterCodePage extends StatelessWidget {
     return Container(
       margin: EdgeInsets.only(top: 40, bottom: 30),
       child: const Text(
-        'VERFIFICAR CODIGO DE REGISTRO',
+        'VERFIFICAR CODIGO',
         style: TextStyle(
           color: Colors.black,
         ),

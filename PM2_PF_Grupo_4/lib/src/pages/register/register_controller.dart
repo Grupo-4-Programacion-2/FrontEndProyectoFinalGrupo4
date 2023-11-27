@@ -43,37 +43,35 @@ class RegisterController extends GetxController {
         print('confirmacion password = $confirmPassword');
       }
 
-      // ProgressDialog progressDialog = ProgressDialog(context: context);
-      // progressDialog.show(max: 100, msg: "REDIRECCIONANDO...");
-      //
-      // User user = User(
-      //   name: name,
-      //   lastname: lastname,
-      //   phone: phone,
-      //   email: email,
-      //   password: password
-      // );
+      ProgressDialog progressDialog = ProgressDialog(context: context);
+      progressDialog.show(max: 100, msg: "REDIRECCIONANDO...");
 
-      //Response response = await usersProvider.create(user);
-      //print(response.body);
-      // Stream stream = await usersProvider.createWithImage(user, imageFile!);
-      // stream.listen((res) {
-      //
-      //   progressDialog.close();
-      //   ResponseApi responseApi = ResponseApi.fromJson(json.decode(res));
-      //
-      //   if (responseApi.success == true) {
-      //     GetStorage().write('user', responseApi.data);
-      //
-      //     print(responseApi.data);// DATOS DEL USUARIO EN SESION
+      User user = User(
+        name: name,
+        lastname: lastname,
+        phone: phone,
+        email: email,
+        password: password
+      );
+
+      Stream stream = await usersProvider.createWithImage(user, imageFile!);
+      stream.listen((res) {
+
+        progressDialog.close();
+        ResponseApi responseApi = ResponseApi.fromJson(json.decode(res));
+
+        if (responseApi.success == true) {
+          GetStorage().write('user', responseApi.data);
+
+          print(responseApi.data);// DATOS DEL USUARIO EN SESION
              //clear(); //Use for clear the fields
              goToHomePage();
-      //   }
-      //   else {
-      //     Get.snackbar('Registro fallido', responseApi.message ?? '');
-      //   }
-      //
-      // });
+        }
+        else {
+          Get.snackbar('Registro fallido', responseApi.message ?? '');
+        }
+
+      });
     }
   }
 

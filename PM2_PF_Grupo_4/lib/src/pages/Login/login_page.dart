@@ -49,7 +49,8 @@ class LoginPage extends StatelessWidget {
             _textInfoBF(),
             _textFieldEmailBF(),
             _textFieldPasswordBF(),
-            _buttonLogin(context)
+            _buttonLogin(context),
+            _forgotPassword()
           ],
         ),
       ),
@@ -133,6 +134,30 @@ class LoginPage extends StatelessWidget {
                 color: Colors.blue,
                 fontWeight: FontWeight.bold,
                 fontSize: 16
+            ),),
+        )
+      ],
+    );
+  }
+
+  Widget _forgotPassword (){
+    return  Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Text("¡Olvide mi Contraseña!",
+            style: TextStyle(
+                color: Colors.black,
+                fontSize: 12
+            )
+        ),
+        SizedBox(width: 10),
+        GestureDetector(
+          onTap: () => controller.goToRecoverPassword(),
+          child: Text("¡Ir Aqui!",
+            style: TextStyle(
+                color: Colors.green,
+                fontWeight: FontWeight.bold,
+                fontSize: 12
             ),),
         )
       ],
