@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:pm2_pf_grupo_4/src/pages/Login/login.dart';
+import 'package:get_storage/get_storage.dart';
+import 'package:pm2_pf_grupo_4/src/pages/Login/login_page.dart';
 import 'package:pm2_pf_grupo_4/src/pages/register/register_page.dart';
+import 'package:pm2_pf_grupo_4/src/pages/register/verification/register_code_page.dart';
 
 void main() async {
+  await GetStorage.init();
   runApp(const MyApp());
 }
 
@@ -26,7 +29,8 @@ class _MyAppState extends State<MyApp> {
       debugShowCheckedModeBanner: false,
       getPages:  [
         GetPage(name: '/', page: () => LoginPage()),
-        GetPage(name: '/register', page: () => RegisterPage())
+        GetPage(name: '/register', page: () => RegisterPage()),
+        GetPage(name: '/register/codes', page: () => RegisterCodePage())
       ],
       theme: ThemeData(
           primaryColor: Colors.amber,

@@ -5,7 +5,6 @@ import 'package:pm2_pf_grupo_4/src/pages/register/register_controller.dart';
 class RegisterPage extends StatelessWidget {
    RegisterPage({super.key});
 
-
   RegisterController controller = Get.put(RegisterController());
 
   @override
@@ -15,7 +14,7 @@ class RegisterPage extends StatelessWidget {
         children: [
           _backgroundCover(context),
           _boxForm(context),
-          //_imageUser(context),
+          _imageUser(context),
           _buttonBack()
         ],
       ),
@@ -182,26 +181,26 @@ class RegisterPage extends StatelessWidget {
     );
   }
 
-  // Widget _imageUser(BuildContext context) {
-  //   return SafeArea(
-  //     child: Container(
-  //       margin: EdgeInsets.only(top: 25),
-  //       alignment: Alignment.topCenter,
-  //       child: GestureDetector(
-  //           onTap: () => controller.showAlertDialog(context),
-  //           child: GetBuilder<RegisterController> (
-  //             builder: (value) => CircleAvatar(
-  //               backgroundImage: controller.imageFile != null
-  //                   ? FileImage(controller.imageFile!)
-  //                   : AssetImage('assets/img/user_profile.png') as ImageProvider,
-  //               radius: 60,
-  //               backgroundColor: Colors.white,
-  //             ),
-  //           )
-  //       ),
-  //     ),
-  //   );
-  // }
+  Widget _imageUser(BuildContext context) {
+    return SafeArea(
+      child: Container(
+        margin: EdgeInsets.only(top: 25),
+        alignment: Alignment.topCenter,
+        child: GestureDetector(
+            onTap: () => controller.showAlertDialog(context),
+            child: GetBuilder<RegisterController> (
+              builder: (value) => CircleAvatar(
+                backgroundImage: controller.imageFile != null
+                    ? FileImage(controller.imageFile!)
+                    : AssetImage('assets/img/user_profile.png') as ImageProvider,
+                radius: 60,
+                backgroundColor: Colors.white,
+              ),
+            )
+        ),
+      ),
+    );
+  }
 
   Widget _textYourInfo() {
     return Container(
