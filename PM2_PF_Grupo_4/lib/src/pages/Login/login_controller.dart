@@ -2,7 +2,6 @@ import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get_storage/get_storage.dart';
-
 import '../../models/responde_api.dart';
 import '../../models/user.dart';
 import '../../providers/user_provider.dart';
@@ -27,7 +26,8 @@ class LoginController extends GetxController {
     String email = emailController.text.trim();
     String password = passwordController.text.trim();
 
-    if (isValidForm(email, password)) { //This validation is for login
+    if (isValidForm(email, password)) {
+      //This validation is for login
       if (kDebugMode) {
         print("Email $email");
         print("Password $password");
@@ -38,25 +38,22 @@ class LoginController extends GetxController {
       print('Response Api: ${responseApi.toJson()}');
 
       if (responseApi.success == true) {
-        //GetStorage().write('user', responseApi.data); // DATOS DEL USUARIO EN SESION
-       // User myUser = User.fromJson(GetStorage().read('user') ?? {});
+        GetStorage()
+            .write('user', responseApi.data); // DATOS DEL USUARIO EN SESION
+        User myUser = User.fromJson(GetStorage().read('user') ?? {});
         Get.snackbar('LOG', responseApi.message ?? '');
-      }
-      else {
+        goToDashboard();
+      } else {
         Get.snackbar('Login fallido', responseApi.message ?? '');
       }
-
-
     }
-
   }
 
   void goToDashboard() {
-    Get.offNamedUntil('/login', (route) => false);
+    Get.offNamedUntil('/home', (route) => false);
   }
 
   bool isValidForm(String email, String password) {
-
     if (email.isEmpty) {
       Get.snackbar('Formulario no valido', 'Debes ingresar el Email');
       return false;
@@ -74,5 +71,4 @@ class LoginController extends GetxController {
 
     return true;
   }
-
 }

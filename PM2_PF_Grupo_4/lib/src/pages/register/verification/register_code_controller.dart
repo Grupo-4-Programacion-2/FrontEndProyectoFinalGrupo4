@@ -8,8 +8,9 @@ class RegisterCodeController extends GetxController {
   UsersProvider usersProvider = UsersProvider();
 
   void validateCode() async {
-    String code = codeController.text;
+    String code = codeController.text.trim();
     if (isValidForm(code)) {
+      print(code);
       Response response = await usersProvider.findByCode(code);
       print(response.body);
       if (response.statusCode == 404) {
