@@ -10,6 +10,7 @@ import 'package:pm2_pf_grupo_4/src/pages/Login/verification/login_send_page.dart
 import 'package:pm2_pf_grupo_4/src/pages/dashboard/home_page.dart';
 import 'package:pm2_pf_grupo_4/src/pages/management/lists/details/detail_remember_page.dart';
 import 'package:pm2_pf_grupo_4/src/pages/management/lists/list_page.dart';
+import 'package:pm2_pf_grupo_4/src/pages/management/lists/maps/note_maps_page.dart';
 import 'package:pm2_pf_grupo_4/src/pages/management/lists/update/remember_update_page.dart';
 import 'package:pm2_pf_grupo_4/src/pages/management/note/create_page.dart';
 import 'package:pm2_pf_grupo_4/src/pages/management/record/record_page.dart';
@@ -50,6 +51,7 @@ class _MyAppState extends State<MyApp> {
         GetPage(name: '/create', page: () => CreatePage()),
         GetPage(name: '/remember/list', page: () => RemembersListPage()),
         GetPage(name: '/remember/list/detail', page: () => RememberDetailPage()),
+        GetPage(name: '/remember/list/map', page: () => noteMapPage()),
         GetPage(name: '/remember/list/detail/update', page: () => RememberUpdatePage()),
         GetPage(name: '/record', page: () => RecordPage()),
         GetPage(name: '/login/profile/info', page: () => InfoPage()),

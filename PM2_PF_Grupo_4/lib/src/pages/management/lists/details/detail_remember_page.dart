@@ -15,7 +15,6 @@ class RememberDetailPage extends StatelessWidget {
   User user = User.fromJson(GetStorage().read('user') ?? {});
 
   Remembers remembers = Remembers.fromJson(Get.arguments['remembers']);
-  //late String? nota = remembers.notaTexto;
 
   @override
   Widget build(BuildContext context) {
@@ -123,7 +122,7 @@ class RememberDetailPage extends StatelessWidget {
     return Container(
       margin: EdgeInsets.symmetric(vertical: 10),
       child: ElevatedButton(
-          onPressed: () => {},//con.goToOrderMap(),
+          onPressed: () => con.goToOrderMap(remembers),
           style: ElevatedButton.styleFrom(
               padding: EdgeInsets.all(15),
               backgroundColor: Colors.green
