@@ -51,19 +51,32 @@ class RecordPage extends StatelessWidget {
   }
 
   // Widget _textFieldDescription() {
-  //   return Container(
-  //     margin: EdgeInsets.symmetric(horizontal: 40, vertical: 15),
-  //     child: TextField(
-  //       //controller: controller.descriptionController,
-  //       keyboardType: TextInputType.text,
-  //       maxLines: 5,
-  //       decoration: InputDecoration(
-  //           hintText: 'AUDIO',
-  //           prefixIcon: Container(
-  //               margin: EdgeInsets.only(bottom: 70),
-  //               child: Icon(Icons.description))
-  //
-  //       ),
+  //   return Form(
+  //     //key: controller.defendingFormPage5Key,
+  //     child: Column(
+  //       crossAxisAlignment: CrossAxisAlignment.start,
+  //       children: <Widget>[
+  //         TextFormField(
+  //           keyboardType: TextInputType.multiline,
+  //           //controller: controller.storyController,
+  //           //validator: controller.validatorStory,
+  //           maxLines: 12,
+  //           decoration: const InputDecoration(
+  //             filled: true,
+  //             fillColor: Color.fromRGBO(255, 255, 255, 1),
+  //             border: OutlineInputBorder(),
+  //             labelText: '1. Breve relato de los sucesos',
+  //           ),
+  //         ),
+  //         const SizedBox(height: 50),
+  //         const Text(
+  //           'Grabar audio relato de los sucesos',
+  //           textAlign: TextAlign.start,
+  //           style: TextStyle(fontSize: 16),
+  //         ),
+  //         const SizedBox(height: 50),
+  //         //RecordingAudioWidget(),
+  //       ],
   //     ),
   //   );
   // }

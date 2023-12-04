@@ -9,17 +9,21 @@ import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
 import 'package:pm2_pf_grupo_4/src/models/remembers.dart';
 
+import '../../../../models/responde_api.dart';
+import '../../../../models/user.dart';
+import '../../../../providers/remember_provider.dart';
+import '../details/detail_remember_controller.dart';
 
-import '../../../models/responde_api.dart';
-import '../../../models/user.dart';
-import '../../../providers/remember_provider.dart';
-
-class CreateController extends GetxController {
+class RememberUpdateController extends GetxController {
   TextEditingController birthdateController = TextEditingController();
   TextEditingController descripcionController = TextEditingController();
   TextEditingController timeController = TextEditingController();
   TextEditingController latController = TextEditingController();
   TextEditingController lgnController = TextEditingController();
+
+  Remembers remembers = Remembers.fromJson(Get.arguments['remembers']);
+
+  RememberDetailController rememberDetailController = Get.find();
 
   DateTime? selectedDate;
   TimeOfDay? selectedTime;
@@ -33,16 +37,33 @@ class CreateController extends GetxController {
 
   double? lat;
   double? lgn;
+  String? id;
+  String notas = '';
+
+  RememberUpdateController() {
+      String lat = remembers.latitud.toString();
+      String lgn = remembers.latitud.toString();
+
+      birthdateController.text = remembers.fechaCita ?? '';
+      descripcionController.text = remembers.notaTexto ?? '';
+      timeController.text = remembers.horaCita ?? '';
+      latController.text = lat;
+      lgnController.text = lgn;
+  }
+
+  void goToBackForCancel() {
+    Get.offNamedUntil('/home', (route) => false);
+  }
 
   void registerRemember(BuildContext context) async {
     String fecha = birthdateController.text;
     String descripcion = descripcionController.text.trim();
     String hora = timeController.text.trim();
 
-    if(latController.text.isEmpty && lgnController.text.isEmpty){
+    if (latController.text.isEmpty && lgnController.text.isEmpty) {
       lat = null;
       lgn = null;
-    }else{
+    } else {
       lat = double.parse(latController.text);
       lgn = double.parse(lgnController.text);
     }
@@ -53,8 +74,9 @@ class CreateController extends GetxController {
       ProgressDialog progressDialog = ProgressDialog(context: context);
       progressDialog.show(max: 100, msg: "REDIRECCIONANDO...");
 
-      Remembers remembers = Remembers(
-          fechaCita: fecha,
+      Remembers remembers22 = Remembers(
+          id: remembers.id,
+          fechaCita: '2023-12-12',
           horaCita: hora,
           userId: userSession.id,
           notaTexto: descripcion,
@@ -62,28 +84,43 @@ class CreateController extends GetxController {
           longitud: lgn);
 
       if (kDebugMode) {
-        print('id = ${remembers.userId}');
-        print('Description = ${remembers.notaTexto}');
-        print('Date = ${remembers.fechaCita}');
-        print('Hora = ${remembers.horaCita}');
-        print('lat = ${remembers.latitud}');
-        print('lgn = ${remembers.longitud}');
+        print('id = ${remembers22.id}');
+        print('id = ${remembers22.userId}');
+        print('Description = ${remembers22.notaTexto}');
+        print('Date = ${remembers22.fechaCita}');
+        print('Hora = ${remembers22.horaCita}');
+        print('lat = ${remembers22.latitud}');
+        print('lgn = ${remembers22.longitud}');
       }
 
-      Stream stream = await rememberProvider.registerRemember(remembers, imageFile!);
-      stream.listen((res) {
+      if (imageFile == null) {
+        ResponseApi responseApi = await rememberProvider.update(remembers22);
+        print("Response Api Update: ${responseApi.data}");
+        Get.snackbar('Actualizacion Exitosa', responseApi.message ?? '');
         progressDialog.close();
-        ResponseApi responseApi = ResponseApi.fromJson(json.decode(res));
-
         if (responseApi.success == true) {
-          print(responseApi.data); // DATOS DEL USUARIO EN SESION
-          Get.snackbar('Registro Exitoso', responseApi.message ?? '');
-          clear();
-        } else {
-          Get.snackbar('Registro fallido', responseApi.message ?? '');
+          goToBackForCancel();
         }
-      });
+      } else {
+        Stream stream = await rememberProvider.updateWithImage(remembers22, imageFile!);
+
+        stream.listen((res) {
+          progressDialog.close();
+          ResponseApi responseApi = ResponseApi.fromJson(json.decode(res));
+          Get.snackbar('Actualizacion Exitosa', responseApi.message ?? '');
+          print("Response Api Update: ${responseApi.data}");
+          if (responseApi.success == true) {
+            goToBackForCancel();
+          } else {
+            Get.snackbar('Actualizacion Fallida', responseApi.message ?? '');
+          }
+        });
+      }
     }
+  }
+
+  void goToDashboard() {
+    Get.toNamed("/home");
   }
 
   bool isValidForm(String fecha, String descripcion) {
@@ -101,13 +138,6 @@ class CreateController extends GetxController {
       Get.snackbar('INFORMACION', 'CAMPO FECHA REQURIDO');
       return false;
     }
-
-    if (imageFile == null) {
-      //validation image
-      Get.snackbar('INFORMACION', 'CAMPO IMAGEN REQUERIDO');
-      return false;
-    }
-
     return true;
   }
 

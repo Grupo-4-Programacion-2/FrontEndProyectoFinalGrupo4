@@ -32,8 +32,8 @@ class Remembers {
         userId: json["userId"],
         notaFoto: json["notaFoto"],
         notaTexto: json["notaTexto"],
-        latitud: json["latitud"].toDouble(),
-        longitud: json["longitud"].toDouble(),
+        latitud: json["latitud"]?.toDouble(),
+        longitud: json["longitud"]?.toDouble(),
       );
 
   static List<Remembers> fromJsonList(List<dynamic> jsonList) {

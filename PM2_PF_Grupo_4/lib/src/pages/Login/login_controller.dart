@@ -41,7 +41,6 @@ class LoginController extends GetxController {
         GetStorage()
             .write('user', responseApi.data); // DATOS DEL USUARIO EN SESION
         User myUser = User.fromJson(GetStorage().read('user') ?? {});
-        Get.snackbar('LOG', responseApi.message ?? '');
         goToDashboard();
       } else {
         Get.snackbar('Login fallido', responseApi.message ?? '');

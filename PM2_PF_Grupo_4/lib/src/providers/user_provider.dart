@@ -117,4 +117,46 @@ class UsersProvider extends GetConnect {
     return responseApi;
   }
 
+  Future<ResponseApi> update(User user) async {
+    Response response = await put(
+        '$url/updateWithoutImage',
+        user.toJson(),
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': userSession.sessionToken ?? ''
+        }
+    ); // ESPERAR HASTA QUE EL SERVIDOR NOS RETORNE LA RESPUESTA
+
+    print('$url/updateWithoutImage');
+    print(response.body);
+
+    if(response.body == null){
+      Get.snackbar("ERROR", "No se pudo actualizar la informacion");
+      return ResponseApi();
+    }
+
+    if(response.statusCode == 401){
+      Get.snackbar("ERROR", "No Esta Autorizado Para Realizar Esta Peticion");
+      return ResponseApi();
+    }
+
+    ResponseApi responseApi = ResponseApi.fromJson(response.body);
+    return responseApi;
+  }
+
+  Future<Stream> updateWithImage(User user, File image) async {
+    Uri uri = Uri.http(Environment.API_URL_OLD, '/api/users/update');
+    final request = http.MultipartRequest('PUT', uri);
+    request.headers['Authorization']= userSession.sessionToken ?? '';
+    request.files.add(http.MultipartFile(
+        'image',
+        http.ByteStream(image.openRead().cast()),
+        await image.length(),
+        filename: basename(image.path)
+    ));
+    request.fields['user'] = json.encode(user);
+    final response = await request.send();
+    return response.stream.transform(utf8.decoder);
+  }
+
 }

@@ -3,9 +3,9 @@ import 'package:get/get.dart';
 import 'package:pm2_pf_grupo_4/src/pages/Login/profile/info_page.dart';
 import 'package:pm2_pf_grupo_4/src/pages/management/note/create_page.dart';
 import 'package:pm2_pf_grupo_4/src/pages/management/record/record_page.dart';
-import 'package:pm2_pf_grupo_4/src/pages/register/register_page.dart';
 
 import '../../utils/custom_animated_bottom_bar.dart';
+import '../management/lists/list_page.dart';
 import 'home_controller.dart';
 
 class HomePage extends StatelessWidget {
@@ -20,7 +20,7 @@ class HomePage extends StatelessWidget {
         body: Obx(() => IndexedStack(
           index: controller.indexTab.value,
           children: [
-            RegisterPage(),
+            RemembersListPage(),
             CreatePage(),
             RecordPage(),
             InfoPage()

@@ -4,9 +4,13 @@ import 'package:get_storage/get_storage.dart';
 import 'package:pm2_pf_grupo_4/src/pages/Login/change_password/login_change_page.dart';
 import 'package:pm2_pf_grupo_4/src/pages/Login/login_page.dart';
 import 'package:pm2_pf_grupo_4/src/pages/Login/profile/info_page.dart';
+import 'package:pm2_pf_grupo_4/src/pages/Login/profile/update_profile/update_profile_page.dart';
 import 'package:pm2_pf_grupo_4/src/pages/Login/verification/login_code_page.dart';
 import 'package:pm2_pf_grupo_4/src/pages/Login/verification/login_send_page.dart';
 import 'package:pm2_pf_grupo_4/src/pages/dashboard/home_page.dart';
+import 'package:pm2_pf_grupo_4/src/pages/management/lists/details/detail_remember_page.dart';
+import 'package:pm2_pf_grupo_4/src/pages/management/lists/list_page.dart';
+import 'package:pm2_pf_grupo_4/src/pages/management/lists/update/remember_update_page.dart';
 import 'package:pm2_pf_grupo_4/src/pages/management/note/create_page.dart';
 import 'package:pm2_pf_grupo_4/src/pages/management/record/record_page.dart';
 import 'package:pm2_pf_grupo_4/src/pages/register/register_page.dart';
@@ -44,8 +48,12 @@ class _MyAppState extends State<MyApp> {
         GetPage(name: '/login/changePassword', page: () => LoginChangePassword()),
         GetPage(name: '/home', page: () => HomePage()),
         GetPage(name: '/create', page: () => CreatePage()),
+        GetPage(name: '/remember/list', page: () => RemembersListPage()),
+        GetPage(name: '/remember/list/detail', page: () => RememberDetailPage()),
+        GetPage(name: '/remember/list/detail/update', page: () => RememberUpdatePage()),
         GetPage(name: '/record', page: () => RecordPage()),
-        GetPage(name: '/login/profile/info', page: () => InfoPage())
+        GetPage(name: '/login/profile/info', page: () => InfoPage()),
+        GetPage(name: '/login/profile/info/update', page: () => UserProfileUpdatePage())
       ],
       theme: ThemeData(
           primaryColor: Colors.amber,

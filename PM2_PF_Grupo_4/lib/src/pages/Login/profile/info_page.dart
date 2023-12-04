@@ -65,7 +65,7 @@ class InfoPage extends StatelessWidget {
       width: double.infinity,
       margin: EdgeInsets.symmetric(horizontal: 40, vertical: 10),
       child: ElevatedButton(
-          onPressed: () => {}, //controller.goToProfileUpdate(),
+          onPressed: () => controller.goToProfileUpdate(),
           style: ElevatedButton.styleFrom(
               padding: EdgeInsets.symmetric(vertical: 15)
           ),
@@ -88,7 +88,7 @@ class InfoPage extends StatelessWidget {
           backgroundImage: controller.user.value.photo != null
               ? NetworkImage(controller.user.value.photo!)
               : AssetImage('assets/img/user_profile.png') as ImageProvider,
-          radius: 60,
+          radius: 80,
           backgroundColor: Colors.white,
         ),
       ),

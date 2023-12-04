@@ -44,6 +44,7 @@ dependencies:
   modal_bottom_sheet: ^3.0.0-pre
   intl: ^0.18.1
   flutter_rounded_date_picker: ^2.0.0
+  audioplayers: ^4.0.0
 
 dev_dependencies:
   flutter_test:

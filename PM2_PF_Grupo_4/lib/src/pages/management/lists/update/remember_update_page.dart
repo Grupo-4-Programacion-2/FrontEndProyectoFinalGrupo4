@@ -1,15 +1,16 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:pm2_pf_grupo_4/src/pages/management/note/create_controller.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:get/get_state_manager/src/simple/get_state.dart';
+import 'package:pm2_pf_grupo_4/src/pages/management/lists/update/remember_update_controller.dart';
 
+class RememberUpdatePage extends StatelessWidget {
 
-class CreatePage extends StatelessWidget {
-
-  CreateController controller = Get.put(CreateController());
+  RememberUpdateController controller = Get.put(RememberUpdateController());
 
   DateTime? selectedDate;
   TimeOfDay? selectedTime;
-
 
   Future<void> _selectDate(BuildContext context) async {
     final DateTime? picked = await showDatePicker(
@@ -52,13 +53,13 @@ class CreatePage extends StatelessWidget {
     return Container(
       width: double.infinity,
       height: MediaQuery.of(context).size.height * 0.35,
-      color: Colors.deepPurpleAccent,
+      color: Colors.redAccent,
     );
   }
 
   Widget _boxForm(BuildContext context) {
     return Container(
-      height: MediaQuery.of(context).size.height * 0.7,
+      height: MediaQuery.of(context).size.height * 0.75,
       margin: EdgeInsets.only(top: MediaQuery.of(context).size.height * 0.24, left: 50, right: 50),
       decoration: BoxDecoration(
           color: Colors.white,
@@ -79,7 +80,8 @@ class CreatePage extends StatelessWidget {
             _textFieldLat(),
             _textFieldLgn(),
             _textFieldDescription(),
-            _buttonCreate(context)
+            _buttonCreate(context),
+            _buttonCancel()
           ],
         ),
       ),
@@ -138,14 +140,14 @@ class CreatePage extends StatelessWidget {
       margin: EdgeInsets.symmetric(horizontal: 40, vertical: 1),
       child: TextField(
         style: TextStyle(
-          color: Colors.black
+            color: Colors.black
         ),
         controller: controller.timeController,
         readOnly: true,
         onTap: () => _selectTime(context),
         decoration: InputDecoration(
-          hintText: 'Hora',
-          prefixIcon: Icon(Icons.access_time)
+            hintText: 'Hora',
+            prefixIcon: Icon(Icons.access_time)
         ),
       ),
     );
@@ -174,11 +176,11 @@ class CreatePage extends StatelessWidget {
         alignment: Alignment.topCenter,
         child: GestureDetector(
             onTap: () => controller.showAlertDialog(context),
-            child: GetBuilder<CreateController> (
+            child: GetBuilder<RememberUpdateController> (
               builder: (value) => CircleAvatar(
                 backgroundImage: controller.imageFile != null
                     ? FileImage(controller.imageFile!)
-                    : AssetImage('assets/img/user_profile.png') as ImageProvider,
+                    : AssetImage('assets/img/no-image.png') as ImageProvider,
                 radius: 60,
                 backgroundColor: Colors.white,
               ),
@@ -192,7 +194,7 @@ class CreatePage extends StatelessWidget {
   Widget _buttonCreate(BuildContext context) {
     return Container(
       width: double.infinity,
-      margin: EdgeInsets.symmetric(horizontal: 40, vertical: 25),
+      margin: EdgeInsets.symmetric(horizontal: 80),
       child: ElevatedButton(
           onPressed: ()  {
             controller.registerRemember(context);
@@ -201,7 +203,29 @@ class CreatePage extends StatelessWidget {
               padding: EdgeInsets.symmetric(vertical: 15)
           ),
           child: Text(
-            'CREAR NOTA',
+            'ACTUALIZAR',
+            style: TextStyle(
+                color: Colors.white
+            ),
+          )
+      ),
+    );
+  }
+
+  Widget _buttonCancel() {
+    return Container(
+      width: double.infinity,
+      margin: EdgeInsets.symmetric(horizontal: 80, vertical: 5),
+      child: ElevatedButton(
+          onPressed: ()  {
+            controller.goToBackForCancel();
+          },
+          style: ElevatedButton.styleFrom(
+              backgroundColor: Colors.red,
+              padding: EdgeInsets.symmetric(vertical: 15)
+          ),
+          child: Text(
+            'CANCELAR',
             style: TextStyle(
                 color: Colors.white
             ),
@@ -214,7 +238,7 @@ class CreatePage extends StatelessWidget {
     return Container(
       margin: EdgeInsets.only(top: 25, bottom: 30),
       child: Text(
-        'CREAR NOTA DE TEXTO',
+        'ACTUALIZAR NOTA',
         style: TextStyle(
           fontSize: 16,
           color: Colors.black,
