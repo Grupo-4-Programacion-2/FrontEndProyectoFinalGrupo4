@@ -1,2 +1,0 @@
-# FrontEndProyectoFinalGrupo4
-FRONTEND
