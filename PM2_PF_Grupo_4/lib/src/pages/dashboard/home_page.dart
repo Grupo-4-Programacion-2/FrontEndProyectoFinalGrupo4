@@ -22,7 +22,7 @@ class HomePage extends StatelessWidget {
           children: [
             RemembersListPage(),
             CreatePage(),
-            RecordPage(),
+            //RecordPage(),
             InfoPage()
           ],
         ))
@@ -51,12 +51,12 @@ class HomePage extends StatelessWidget {
             activeColor: Colors.white,
             inactiveColor: Colors.white
         ),
-        BottomNavyBarItem(
-            icon: const Icon(Icons.multitrack_audio),
-            title: const Text('Audio'),
-            activeColor: Colors.white,
-            inactiveColor: Colors.white
-        ),
+        // BottomNavyBarItem(
+        //     icon: const Icon(Icons.multitrack_audio),
+        //     title: const Text('Audio'),
+        //     activeColor: Colors.white,
+        //     inactiveColor: Colors.white
+        // ),
         BottomNavyBarItem(
             icon: const Icon(Icons.person),
             title: const Text('Perfil'),

@@ -47,7 +47,9 @@ dependencies:
   audioplayers: ^4.0.0
   google_maps_flutter: ^2.2.1
   flutter_polyline_points: ^1.0.0
-  dio: ^4.0.0
+  firebase_messaging: ^11.2.14
+  flutter_local_notifications: ^9.4.0
+  firebase_core: ^1.15.0
 
 dev_dependencies:
   flutter_test:

@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:pm2_pf_grupo_4/src/pages/management/record/record_controller.dart';
 
 class RecordPage extends StatelessWidget {
 
-  //RestaurantCategoriesCreateController controller = Get.put(RestaurantCategoriesCreateController());
+  RecordController controller = Get.put(RecordController());
 
   @override
   Widget build(BuildContext context) {
@@ -43,7 +46,8 @@ class RecordPage extends StatelessWidget {
         child: Column(
           children: [
             _textYourInfo(),
-            _buttonCreate(context)
+            _buttonGrabar(context),
+            _buttonDetener(context)
           ],
         ),
       ),
@@ -81,19 +85,40 @@ class RecordPage extends StatelessWidget {
   //   );
   // }
 
-  Widget _buttonCreate(BuildContext context) {
+  Widget _buttonGrabar(BuildContext context) {
     return Container(
       width: double.infinity,
       margin: EdgeInsets.symmetric(horizontal: 40, vertical: 25),
       child: ElevatedButton(
           onPressed: ()  {
-            //controller.createCategory();
+            //controller.recording();
           },
           style: ElevatedButton.styleFrom(
               padding: EdgeInsets.symmetric(vertical: 15)
           ),
           child: Text(
             'GRABAR AUDIO',
+            style: TextStyle(
+                color: Colors.white
+            ),
+          )
+      ),
+    );
+  }
+
+  Widget _buttonDetener(BuildContext context) {
+    return Container(
+      width: double.infinity,
+      margin: EdgeInsets.symmetric(horizontal: 40, vertical: 25),
+      child: ElevatedButton(
+          onPressed: ()  {
+            //controller.recording();
+          },
+          style: ElevatedButton.styleFrom(
+              padding: EdgeInsets.symmetric(vertical: 15)
+          ),
+          child: Text(
+            'DETENER GRABACION',
             style: TextStyle(
                 color: Colors.white
             ),

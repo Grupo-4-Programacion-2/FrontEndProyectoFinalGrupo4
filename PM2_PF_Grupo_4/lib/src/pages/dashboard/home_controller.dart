@@ -3,24 +3,25 @@ import 'package:get_storage/get_storage.dart';
 
 import '../../models/remembers.dart';
 import '../../models/user.dart';
+import '../../providers/push_notifications_provider.dart';
 
 class HomeController extends GetxController {
 
   var indexTab = 0.obs;
 
-  //PushNotificationsProvider pushNotificationsProvider = PushNotificationsProvider();
+  PushNotificationsProvider pushNotificationsProvider = PushNotificationsProvider();
   User user = User.fromJson(GetStorage().read('user') ?? {});
   Remembers remembers = Remembers.fromJson(GetStorage().read('remembers') ?? {});
 
-  // RestaurantHomeController() {
-  //   saveToken();
-  // }
+  HomeController() {
+    saveToken();
+  }
 
-  // void saveToken() {
-  //   if (user.id != null) {
-  //     pushNotificationsProvider.saveToken(user.id!);
-  //   }
-  // }
+  void saveToken() {
+    if (user.id != null) {
+      pushNotificationsProvider.saveToken(user.id!);
+    }
+  }
 
   void changeTab(int index) {
     indexTab.value = index;
