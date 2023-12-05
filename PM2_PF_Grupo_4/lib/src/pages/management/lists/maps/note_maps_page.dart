@@ -35,6 +35,7 @@ class noteMapPage extends StatelessWidget {
   Widget _googleMaps() {
     return GoogleMap(
       initialCameraPosition: con.initialPosition,
+      markers: {const Marker(markerId: MarkerId("Prueba"), position: LatLng(15.77924700, -86.78764500),)},
       mapType: MapType.normal,
       onMapCreated: con.onMapCreate,
       myLocationButtonEnabled: false,

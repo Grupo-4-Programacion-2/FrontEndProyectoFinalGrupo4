@@ -16,7 +16,8 @@ class noteMapController extends GetxController {
 
   static final CameraPosition kLake = CameraPosition(
       bearing: 192.8334901395799,
-      target: LatLng(14.6611132, -86.18527),
+      
+      target: LatLng(15.77924700, -86.78764500),
       tilt: 59.440717697143555,
       zoom: 19.151926040649414);
 

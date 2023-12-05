@@ -90,7 +90,7 @@ class LoginPage extends StatelessWidget {
       width: double.infinity,
       margin: EdgeInsets.symmetric(horizontal: 50, vertical: 27),
       child: ElevatedButton(
-          onPressed: () => controller.login(),
+          onPressed: () => controller.login(BuildContext),
           style: ElevatedButton.styleFrom(
               padding: EdgeInsets.symmetric(vertical: 15)),
           child: const Text(
